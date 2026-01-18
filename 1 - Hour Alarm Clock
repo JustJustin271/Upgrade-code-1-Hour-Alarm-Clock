@@ -72,13 +72,13 @@ void turnOffAll () {
 void armSequence () {
   digitalWrite(rled, HIGH);
       digitalWrite(alarm, HIGH);
-      delay(100);
+      delay(50);
       digitalWrite(rled, LOW);
       digitalWrite(alarm, LOW);
-      delay(100);
+      delay(50);
       digitalWrite(rled, HIGH);
       digitalWrite(alarm, HIGH);
-      delay(100);
+      delay(50);
       digitalWrite(rled, LOW);
       digitalWrite(alarm, LOW);
 }
