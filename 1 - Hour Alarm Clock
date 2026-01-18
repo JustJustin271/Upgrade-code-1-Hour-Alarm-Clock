@@ -1,0 +1,148 @@
+const int btn1 = 2;
+
+const int rled = 3;
+const int yled = 4;
+const int gled = 5;
+const int bled = 6;
+const int gled2 = 7;
+const int yled2 = 8;
+const int rled2 = 9;
+
+const int alarm = 13;
+
+unsigned long alarmDuration = 3600000; //60000 = 1 minute, 300000 = 5 minutes, 3600000 = 1 Hour :)
+
+//Duh, ofc you have to tell the Arduino which pins are connected to what? :) 
+//You think the Arduino has eyes?!? Well, I mean, I guess it might be an extension component...but you still have to define it :D 
+
+void setup() {
+  //I'd be defining; they hating... :) 
+  pinMode(btn1, INPUT_PULLUP);
+  
+  pinMode(rled, OUTPUT);
+  pinMode(yled, OUTPUT);
+  pinMode(gled, OUTPUT);
+  pinMode(bled, OUTPUT);
+  pinMode(gled2, OUTPUT);
+  pinMode(yled2, OUTPUT);
+  pinMode(rled2, OUTPUT);
+  
+  pinMode(alarm, OUTPUT);
+  
+}
+
+void loop() {
+
+  bool sbtn = digitalRead(btn1);
+
+    if(sbtn == LOW) {
+      //If pressed, the light and sound will turn on and off, arming the alarm clock
+      delay(50); //Bouncy, bouncy :)) 
+      armSequence ();
+      delay(alarmDuration);  //Puts the Arduino into a coma with a Bad Apple!!
+      
+      while (true) {
+        if(pattern() == true) {  //Plays the pattern
+          turnOffAll();
+          break;
+          } 
+        }
+      delay(1000); //Hold up...Wait a second :) 
+      }
+    }
+
+
+//Welcome to the basement, there, my precious viewers >:) 
+
+
+void turnOffAll () {
+  //New function alert :D
+  //Instead of 5 billion if statements with this whole block, we'll just keep this down in the basement...until that button is pressed
+  digitalWrite(rled, LOW);
+  digitalWrite(yled, LOW);
+  digitalWrite(gled, LOW);
+  digitalWrite(bled, LOW);
+  digitalWrite(gled2, LOW);
+  digitalWrite(yled2, LOW);
+  digitalWrite(rled2, LOW);
+  digitalWrite(alarm, LOW);
+}
+
+
+void armSequence () {
+  digitalWrite(rled, HIGH);
+      digitalWrite(alarm, HIGH);
+      delay(100);
+      digitalWrite(rled, LOW);
+      digitalWrite(alarm, LOW);
+      delay(100);
+      digitalWrite(rled, HIGH);
+      digitalWrite(alarm, HIGH);
+      delay(100);
+      digitalWrite(rled, LOW);
+      digitalWrite(alarm, LOW);
+}
+
+bool pattern () { 
+  digitalWrite(rled2, LOW); //Fancy patterns :) 
+  digitalWrite(rled, HIGH);
+  digitalWrite(alarm, HIGH);
+    delay(450);
+      if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+  
+  digitalWrite(rled, LOW);
+  digitalWrite(yled, HIGH);
+  digitalWrite(alarm, LOW);
+    delay(450);
+       if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+
+  digitalWrite(rled, LOW);
+  digitalWrite(yled, HIGH);
+  digitalWrite(alarm, LOW);
+    delay(450);
+        if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+          
+  digitalWrite(yled, LOW);
+  digitalWrite(gled, HIGH);
+  digitalWrite(alarm, HIGH);
+    delay(450);
+       if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+              
+  digitalWrite(gled, LOW);
+  digitalWrite(bled, HIGH);
+  digitalWrite(alarm, LOW);
+    delay(450);
+       if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+  
+  digitalWrite(bled, LOW);
+  digitalWrite(gled2, HIGH);
+  digitalWrite(alarm, HIGH);
+    delay(450);
+       if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+  
+  digitalWrite(gled2, LOW);
+  digitalWrite(yled2, HIGH);
+  digitalWrite(alarm, LOW);
+    delay(450);
+      if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+
+  digitalWrite(yled2, LOW);
+  digitalWrite(rled2, HIGH);
+  digitalWrite(alarm, HIGH);
+    delay(450);
+      if(digitalRead(btn1) == LOW) return true;
+  delay(50); //Bouncy, bouncy time!
+
+    return false;
+}
+//Upgraded Code for Arduino Clock :D 
+//New Functions (bool/int), New understandings of delay, unsigned long, using semicolons over colons, while true, learned about Bouncy, bouncy time!!
+//Very nice project, over 100 lines of code :D (148 total lines)
+//Janaury 18th, 2026
